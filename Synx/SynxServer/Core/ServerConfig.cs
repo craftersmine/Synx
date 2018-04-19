@@ -25,10 +25,31 @@ namespace craftersmine.Synx.Server.Core
 
         public static string GetString(string key)
         {
-            string val = "";
-            if (cfg.TryGetValue(key, out val))
+            if (cfg.TryGetValue(key, out string val))
                 return val;
-            else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file!");
+            else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file! Check server environment integrity!");
+        }
+
+        public static int GetInt(string key)
+        {
+            if (cfg.TryGetValue(key, out string val))
+            {
+                if (int.TryParse(val, out int intVal))
+                    return intVal;
+                else throw new InvalidDataException("Config key \"" + key + "\" has invalid type, expected value is numeric value! Check your server config!");
+            }
+            else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file! Check server environment integrity!");
+        }
+
+        public static bool GetBool(string key)
+        {
+            if (cfg.TryGetValue(key, out string val))
+            {
+                if (bool.TryParse(val, out bool boolVal))
+                    return boolVal;
+                else throw new InvalidDataException("Config key \"" + key + "\" has invalid type, expected value is \"true\" or \"false\"! Check your server config!");
+            }
+            else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file! Check server environment integrity!");
         }
     }
 }
