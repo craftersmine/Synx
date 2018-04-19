@@ -8,6 +8,7 @@ using WebSocketSharp;
 using craftersmine.Packager.Lib.Core;
 using craftersmine.Packager.Lib.Core.Exceptions;
 using craftersmine.Synx.Server.Core;
+using craftersmine.Synx.Server.Utils;
 using System.IO;
 
 namespace craftersmine.Synx.Server
@@ -16,15 +17,24 @@ namespace craftersmine.Synx.Server
     {
         static void Main(string[] args)
         {
-            StaticData.ServerRoot = Environment.CurrentDirectory;
-            StaticData.LogsPath = Path.Combine(StaticData.ServerRoot, "logs");
-            StaticData.LoggerInstance = new Utils.Logger("synx-server");
-            Log("info", "Initiating server...");
-            ServerEnvironment.InitiateEnvironment(StaticData.ServerRoot);
-            Console.ReadKey();
+            try
+            {
+                StaticData.ServerRoot = Environment.CurrentDirectory;
+                StaticData.LogsPath = Path.Combine(StaticData.ServerRoot, "logs");
+                StaticData.LoggerInstance = new Utils.Logger("synx-server");
+                Log("info", "Initiating server...");
+                ServerEnvironment.InitiateEnvironment(StaticData.ServerRoot);
+                ServerConfig.LoadConfig();
+                ServerConfig.GetString("test");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                CrashHandler.HandleException(ex);
+            }
         }
 
-        protected static void Log(string prefix, string contents)
+        public static void Log(string prefix, string contents)
         {
             StaticData.LoggerInstance.Log(prefix, contents);
         }
