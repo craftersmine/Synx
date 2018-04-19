@@ -34,5 +34,19 @@ namespace craftersmine.Synx.Server.Utils
             File.AppendAllText(_file, logLineCtor);
             Console.Write(logLineCtor);
         }
+
+        public void LogException(string prefix, Exception exception)
+        {
+            string[] stacktrace = exception.StackTrace.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            Log(prefix, "An error has occurred!");
+            Log(prefix, "Error message: " + exception.Message);
+            Log(prefix, "Exception type: " + exception.GetType().ToString());
+            Log(prefix, "==== START OF STACKTRACE ====");
+            foreach (var stln in stacktrace)
+            {
+                Log(prefix, stln);
+            }
+            Log(prefix, "====  END OF STACKTRACE  ====");
+        }
     }
 }
