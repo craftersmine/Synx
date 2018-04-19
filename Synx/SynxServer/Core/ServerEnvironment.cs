@@ -21,7 +21,7 @@ namespace craftersmine.Synx.Server.Core
 
             try
             {
-                Log("info", "Initiating server environment...");
+                log("info", "Initiating server environment...");
                 StaticData.UserStorage = Path.Combine(serverRoot, "user-storage");
                 string serverPropsFile = Path.Combine(serverRoot, "server-properties.cfg");
                 string banlistFile = Path.Combine(serverRoot, "banned-accounts.lst");
@@ -37,7 +37,8 @@ namespace craftersmine.Synx.Server.Core
                 }
                 else
                 {
-                    string[] lines = File.ReadAllLines(serverPropsFile);
+                    List<string> lines = new List<string>();
+                    lines.AddRange(File.ReadAllLines(serverPropsFile));
                     List<string> toWrite = new List<string>();
                     List<string> keys = new List<string>();
                     foreach (var prop in lines)
@@ -46,29 +47,38 @@ namespace craftersmine.Synx.Server.Core
                     {
                         if (!keys.Contains(key.Key))
                         {
-                            toWrite.Add(string.Join("=", key.Key, key.Value));
+                            lines.Add(string.Join("=", key.Key, key.Value));
                         }
                     }
-                    if (toWrite.Any())
+                    if (lines.Any())
                     {
-                        toWrite.AddRange(lines);
-                        File.WriteAllLines(serverPropsFile, toWrite);
+                        File.WriteAllLines(serverPropsFile, lines);
                     }
                 }
                 if (!File.Exists(banlistFile))
                     File.WriteAllText(banlistFile, "");
                 if (!File.Exists(accountsDataFile))
                     File.WriteAllText(accountsDataFile, "");
+                log("info", "Server environment initiated!");
             }
             catch (Exception ex)
             {
-                throw ex;
+                logException("error", ex);
+            }
+            finally
+            {
+                Environment.Exit(0);
             }
         }
 
-        private static void Log(string prefix, string contents)
+        private static void log(string prefix, string contents)
         {
             StaticData.LoggerInstance.Log(prefix, contents);
+        }
+
+        private static void logException(string prefix, Exception ex)
+        {
+            StaticData.LoggerInstance.LogException(prefix, ex);
         }
     }
 }
