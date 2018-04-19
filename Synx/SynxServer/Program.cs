@@ -25,8 +25,6 @@ namespace craftersmine.Synx.Server
                 Log("info", "Initiating server...");
                 ServerEnvironment.InitiateEnvironment(StaticData.ServerRoot);
                 ServerConfig.LoadConfig();
-                ServerConfig.GetString("test");
-                Console.ReadKey();
             }
             catch (Exception ex)
             {
