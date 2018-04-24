@@ -18,5 +18,7 @@ namespace craftersmine.Synx.Server
         public static string UserStorage { get; set; }
         public static string LogsPath { get; set; }
         public static string ServerRoot { get; set; }
+
+        public static bool IsServerRunning { get; set; }
     }
 }
