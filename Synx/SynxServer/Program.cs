@@ -10,6 +10,7 @@ using craftersmine.Packager.Lib.Core.Exceptions;
 using craftersmine.Synx.Server.Core;
 using craftersmine.Synx.Server.Utils;
 using System.IO;
+using System.Net;
 
 namespace craftersmine.Synx.Server
 {
@@ -22,9 +23,30 @@ namespace craftersmine.Synx.Server
                 StaticData.ServerRoot = Environment.CurrentDirectory;
                 StaticData.LogsPath = Path.Combine(StaticData.ServerRoot, "logs");
                 StaticData.LoggerInstance = new Utils.Logger("synx-server");
-                Log("info", "Initiating server...");
+                Log("info", "Initiating Synx server...");
                 ServerEnvironment.InitiateEnvironment(StaticData.ServerRoot);
                 ServerConfig.LoadConfig();
+                string serverIp = ServerConfig.GetString("bind-ip");
+                if (serverIp != string.Empty && serverIp != null && serverIp != "")
+                {
+                    if (IPAddress.TryParse(serverIp, out IPAddress address))
+                    {
+                        ServerController.CreateServerInstance(address, ServerConfig.GetInt("port"));
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The IP address for the binding has an invalid format! Check the server configuration!");
+                    }
+                }
+                else ServerController.CreateServerInstance(IPAddress.Any, ServerConfig.GetInt("port"));
+                ServerController.StartServer();
+                while (StaticData.IsServerRunning)
+                {
+                    string inp = Console.ReadLine();
+                    if (inp.ToLower() == "stop")
+                        ServerController.StopServer();
+                }
+                Log("info", "Synx server was stopped!");
             }
             catch (Exception ex)
             {
