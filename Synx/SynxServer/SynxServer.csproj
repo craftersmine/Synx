@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ServerBehaviour.cs" />
     <Compile Include="Core\ServerConfig.cs" />
     <Compile Include="Core\ServerController.cs" />
     <Compile Include="Core\ServerEnvironment.cs" />
