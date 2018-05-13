@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynxServer", "SynxServer\SynxServer.csproj", "{9413C9CA-0E03-4BD0-883E-BA0A62F3A3F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynxClientCore", "SynxClientCore\SynxClientCore.csproj", "{DACE2622-2092-45CD-89B5-B3E61AACAB7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynxClient", "SynxClient\SynxClient.csproj", "{7451F684-F492-4F5C-98C9-1FBFA52C5158}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9413C9CA-0E03-4BD0-883E-BA0A62F3A3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9413C9CA-0E03-4BD0-883E-BA0A62F3A3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9413C9CA-0E03-4BD0-883E-BA0A62F3A3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DACE2622-2092-45CD-89B5-B3E61AACAB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DACE2622-2092-45CD-89B5-B3E61AACAB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DACE2622-2092-45CD-89B5-B3E61AACAB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DACE2622-2092-45CD-89B5-B3E61AACAB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7451F684-F492-4F5C-98C9-1FBFA52C5158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7451F684-F492-4F5C-98C9-1FBFA52C5158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7451F684-F492-4F5C-98C9-1FBFA52C5158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7451F684-F492-4F5C-98C9-1FBFA52C5158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

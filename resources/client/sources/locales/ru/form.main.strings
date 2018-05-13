@@ -1,0 +1,48 @@
+main.title=Основное
+
+main.tab.home=Главная
+main.tab.syncingObjectsList=Синхронизируемые объекты
+main.tab.devicesList=Список устройств
+
+main.label.welcome=Добро пожаловать в Synx! Выберите предложенное действие ниже для продолжения
+
+main.links.connectToServer=Подключиться к серверу
+main.links.createServer=Создать собственный сервер
+
+main.list.syncingObjects.column.folderName=Имя папки
+main.list.syncingObjects.column.folderPath=Путь к папке
+main.list.syncingObjects.column.syncStatus=Статус
+main.list.devicesList.column.model=Модель устройства
+main.list.devicesList.column.user=Имя пользователя
+main.list.devicesList.column.deviceType=Тип устройства
+
+main.menu.header.user=Пользователь
+main.menu.header.sync=Синхронизация
+main.menu.header.service=Сервис
+main.menu.header.help=?
+
+main.menu.help.about=О программе
+
+main.menu.service.settings=Настройки
+
+main.menu.Synx.connectToServer=Подключиться к серверу
+main.menu.Synx.disconnectFromServer=Отключиться от сервера
+main.menu.Synx.exit=Остановить синхронизацию и выйти
+
+main.menu.user.info=Информация о пользователе
+main.menu.user.clearAllSyncedData=Очистить хранилище на сервере этого устройства
+main.menu.user.restoreSyncedDataFrom=Восстановить данные из...
+
+main.menu.sync.startSync=Синхронизировать
+main.menu.sync.stopSync=Остановить синхронизацию
+main.menu.sync.pauseSyncFor=Приостановить синхронизацию на...
+
+main.tools.syncingObjects.add=Добавить папку
+main.tools.syncingObjects.remove=Удалить из списка
+main.tools.syncingObjects.startSync=Синхронизировать
+main.tools.syncingObjects.stopSync=Остановить синхронизацию
+main.tools.syncingObjects.clearList=Очистить список
+
+main.tools.devicesList.restoreDeviceData=Восстановить данные выбранного устройства
+main.tools.devicesList.showSyncedData=Показать синхронизированные данные этого устройства
+main.tools.devicesList.wipeSyncedData=Очистить синхронизированные данные устройства
