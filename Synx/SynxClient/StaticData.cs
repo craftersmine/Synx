@@ -13,13 +13,11 @@ namespace craftersmine.Synx.Client.App
 {
     public sealed class StaticData
     {
-        private static Settings settings = new Settings();
-        private static Dictionary<string, string> localeStrings = new Dictionary<string, string>();
+        internal static Settings ClientSettings { get; } = new Settings();
 
-        internal static Settings ClientSettings => settings;
         public static string ClientLocale { get { return ClientSettings.Locale; } set { ClientSettings.Locale = value; ClientSettings.Save(); } }
 
-        public static Dictionary<string, string> LocaleStrings => localeStrings;
+        public static Dictionary<string, string> LocaleStrings { get; } = new Dictionary<string, string>();
 
         public static void LoadLocales()
         {
