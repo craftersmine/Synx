@@ -61,12 +61,17 @@ namespace craftersmine.Synx.Client.Gui
 
         private void ClientOnClose(object sender, WebSocketSharp.CloseEventArgs e)
         {
+            
             Invoke(new Action(() =>
             {
                 statusProgress.Visible = false;
                 if (e.WasClean)
                     statusBar.Text = App.StaticData.LocaleStrings["main.status.disconnectedClearly"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString());
-                else statusBar.Text = App.StaticData.LocaleStrings["main.status.disconnectedWithError"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString()).Replace("{reason}", e.Reason);
+                else
+                {
+                    statusBar.Text = App.StaticData.LocaleStrings["main.status.disconnectedWithError"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString()).Replace("{reason}", e.Reason);
+                    MessageBox.Show(App.StaticData.LocaleStrings["main.status.disconnectedWithError"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString()).Replace("{reason}", e.Reason), App.StaticData.LocaleStrings["common.message.title.error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 mainTabHomePanel.Enabled = true;
                 mainMenuConnectToServer.Enabled = true;
                 mainMenuDisconnect.Enabled = false;
@@ -145,5 +150,7 @@ namespace craftersmine.Synx.Client.Gui
         {
             ClientController.CloseConnection();
         }
+
+        private void linkConnectToServer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => new ConnectTo().ShowDialog();
     }
 }

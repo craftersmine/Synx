@@ -47,10 +47,12 @@
             this.mainMenuSyncPause = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuHeaderService = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuServiceSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenuServiceLog = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuHeaderHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusBar = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tabController = new System.Windows.Forms.TabControl();
             this.mainTabHome = new System.Windows.Forms.TabPage();
             this.mainTabHomePanel = new System.Windows.Forms.Panel();
@@ -87,8 +89,6 @@
             this.devListShowSynced = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.devListWipeSyncedData = new System.Windows.Forms.ToolStripButton();
-            this.statusProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.mainMenuServiceLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabController.SuspendLayout();
@@ -240,6 +240,12 @@
             this.mainMenuServiceSettings.Size = new System.Drawing.Size(226, 22);
             this.mainMenuServiceSettings.Text = "{main.menu.service.settings}";
             // 
+            // mainMenuServiceLog
+            // 
+            this.mainMenuServiceLog.Name = "mainMenuServiceLog";
+            this.mainMenuServiceLog.Size = new System.Drawing.Size(226, 22);
+            this.mainMenuServiceLog.Text = "{main.menu.service.log}";
+            // 
             // mainMenuHeaderHelp
             // 
             this.mainMenuHeaderHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -272,6 +278,11 @@
             this.statusBar.Spring = true;
             this.statusBar.Text = "{status}";
             this.statusBar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statusProgress
+            // 
+            this.statusProgress.Name = "statusProgress";
+            this.statusProgress.Size = new System.Drawing.Size(100, 16);
             // 
             // tabController
             // 
@@ -375,6 +386,7 @@
             this.linkConnectToServer.TabStop = true;
             this.linkConnectToServer.Text = "{main.links.connectToServer}";
             this.linkConnectToServer.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
+            this.linkConnectToServer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkConnectToServer_LinkClicked);
             // 
             // mainTabSyncingObjectsList
             // 
@@ -617,17 +629,6 @@
             this.devListWipeSyncedData.Name = "devListWipeSyncedData";
             this.devListWipeSyncedData.Size = new System.Drawing.Size(23, 22);
             this.devListWipeSyncedData.Text = "{main.tools.devicesList.wipeSyncedData}";
-            // 
-            // statusProgress
-            // 
-            this.statusProgress.Name = "statusProgress";
-            this.statusProgress.Size = new System.Drawing.Size(100, 16);
-            // 
-            // mainMenuServiceLog
-            // 
-            this.mainMenuServiceLog.Name = "mainMenuServiceLog";
-            this.mainMenuServiceLog.Size = new System.Drawing.Size(226, 22);
-            this.mainMenuServiceLog.Text = "{main.menu.service.log}";
             // 
             // MainForm
             // 
