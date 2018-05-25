@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using craftersmine.Synx.Client.Core;
 
-namespace craftersmine.Synx.Client
+namespace craftersmine.Synx.Client.Gui
 {
     public partial class MainForm : Form
     {
@@ -16,7 +17,80 @@ namespace craftersmine.Synx.Client
         {
             InitializeComponent();
             ApplyLocales(App.StaticData.ClientLocale);
-            statusBar.Text = "{main.status.ready}";
+            statusProgress.Visible = false;
+            statusBar.Text = App.StaticData.LocaleStrings["main.status.ready"];
+
+            ClientController.OnCreatingClientInstance += OnCreatingClientInstance;
+            ClientController.OnCreatedClientInstance += OnCreatedClientInstance;
+            ClientController.OnConnecting += ClientOnConnecting;
+            ClientController.OnClose += ClientOnClose;
+            ClientController.OnError += ClientOnError;
+            ClientController.OnMessage += ClientOnMessage;
+            ClientController.OnOpen += ClienOnOpen;
+        }
+
+        private void ClientOnConnecting(object sender, ConnectingToServerEventArgs e)
+        {
+            statusProgress.Visible = true;
+            statusProgress.Style = ProgressBarStyle.Marquee;
+            statusBar.Text = App.StaticData.LocaleStrings["main.status.connecting"].Replace("{address}", e.Address).Replace("{port}", e.Port.ToString());
+            statusProgress.Value = 0;
+        }
+
+        private void ClienOnOpen(object sender, EventArgs e)
+        {
+            statusProgress.Visible = true;
+            statusProgress.Style = ProgressBarStyle.Marquee;
+            mainTabHomePanel.Enabled = false;
+            mainMenuConnectToServer.Enabled = false;
+            statusProgress.Visible = false;
+            statusBar.Text = App.StaticData.LocaleStrings["main.status.connected"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString());
+        }
+
+        private void ClientOnMessage(object sender, WebSocketSharp.MessageEventArgs e)
+        {
+            //statusBar.Text = e.Data;
+            Program.LogOnlyConsole("info/debug", "Message received: " + e.Data);
+        }
+
+        private void ClientOnError(object sender, WebSocketSharp.ErrorEventArgs e)
+        {
+            //statusBar.Text = e.Message;
+            Program.LogException("error", e.Exception);
+        }
+
+        private void ClientOnClose(object sender, WebSocketSharp.CloseEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                statusProgress.Visible = false;
+                if (e.WasClean)
+                    statusBar.Text = App.StaticData.LocaleStrings["main.status.disconnectedClearly"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString());
+                else statusBar.Text = App.StaticData.LocaleStrings["main.status.disconnectedWithError"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString()).Replace("{reason}", e.Reason);
+                mainTabHomePanel.Enabled = true;
+                mainMenuConnectToServer.Enabled = true;
+                mainMenuDisconnect.Enabled = false;
+            }));
+        }
+
+        private void OnCreatedClientInstance(object sender, CreationEventDelegate e)
+        {
+            statusProgress.Visible = true;
+            statusProgress.Style = ProgressBarStyle.Continuous;
+            statusProgress.Value = 100;
+            if (e.IsSuccessful)
+            {
+                mainMenuDisconnect.Enabled = true;
+                ClientController.InitializeConnection();
+            }
+        }
+
+        private void OnCreatingClientInstance(object sender, EventArgs e)
+        {
+            statusProgress.Visible = true;
+            statusProgress.Style = ProgressBarStyle.Marquee;
+            mainTabHomePanel.Enabled = false;
+            mainMenuConnectToServer.Enabled = false;
         }
 
         private void ApplyLocales(string localeId)
@@ -53,6 +127,7 @@ namespace craftersmine.Synx.Client
             mainMenuHelpAbout.Text = App.StaticData.LocaleStrings["main.menu.help.about"];
 
             mainMenuServiceSettings.Text = App.StaticData.LocaleStrings["main.menu.service.settings"];
+            mainMenuServiceLog.Text = App.StaticData.LocaleStrings["main.menu.service.log"];
 
             mainMenuSyncPause.Text = App.StaticData.LocaleStrings["main.menu.sync.pauseSyncFor"];
             mainMenuSyncStart.Text = App.StaticData.LocaleStrings["main.menu.sync.startSync"];
@@ -62,6 +137,13 @@ namespace craftersmine.Synx.Client
             mainMenuUserRestoreSynced.Text = App.StaticData.LocaleStrings["main.menu.user.restoreSyncedDataFrom"];
             mainMenuUserInfo.Text = App.StaticData.LocaleStrings["main.menu.user.info"];
             Program.Log("info", "Locales applied!");
+        }
+
+        private void mainMenuConnectToServer_Click(object sender, EventArgs e) => new ConnectTo().ShowDialog();
+
+        private void mainMenuDisconnect_Click(object sender, EventArgs e)
+        {
+            ClientController.CloseConnection();
         }
     }
 }
