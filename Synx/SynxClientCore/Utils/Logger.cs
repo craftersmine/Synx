@@ -24,14 +24,15 @@ namespace craftersmine.Synx.Client.Utils
             File.WriteAllText(_file, "");
         }
 
-        public void Log(string prefix, string contents)
+        public void Log(string prefix, string contents, bool isOnlyConsole = false)
         {
             string _date;
             if (DateTime.Now.Hour.ToString().Length < 2)
                 _date = DateTime.Now.ToShortDateString() + " 0" + DateTime.Now.ToShortTimeString();
             else _date = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
             string logLineCtor = _date + " [" + prefix.ToUpper() + "]" + " " + contents + "\r\n";
-            File.AppendAllText(_file, logLineCtor);
+            if (!isOnlyConsole)
+                File.AppendAllText(_file, logLineCtor);
             Console.Write(logLineCtor);
         }
 
