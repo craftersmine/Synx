@@ -1,0 +1,9 @@
+connect.title=Подключиться к...
+
+connect.label.tip=Введите адрес и порт сервера для установки соединения
+connect.label.address=Адрес сервера:
+connect.label.port=Порт сервера:
+
+connect.checkbox.autoconnectToLast=Сохранить данные сервера и автоматически подключаться к нему
+
+connect.button.connectTo=Подключиться
