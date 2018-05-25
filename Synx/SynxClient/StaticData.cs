@@ -26,18 +26,32 @@ namespace craftersmine.Synx.Client.App
             stopwatch.Start();
 
             OnDemandPackage localePak = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\locales\\" + ClientLocale + ".pak"));
-            string[] mainFormLocales = localePak.ReadLines("form.main.strings");
-            foreach (var pair in mainFormLocales)
+
+            AddLocales(localePak, "common.strings");
+            AddLocales(localePak, "form.main.strings");
+            AddLocales(localePak, "form.connectTo.strings");
+
+            stopwatch.Stop();
+            Program.Log("info", "Locale files loaded! Elapsed " + stopwatch.Elapsed.ToString());
+        }
+
+        public static void SaveSettings()
+        {
+            ClientSettings.Save();
+        }
+
+        private static void AddLocales(OnDemandPackage localePak, string file)
+        {
+            string[] locales = localePak.ReadLines(file);
+            foreach (var rootPair in locales)
             {
+                string pair = Encoding.UTF8.GetString(Encoding.Default.GetBytes(rootPair));
                 if (pair != string.Empty && pair != null && pair != "")
                 {
                     string[] kvpair = pair.Split('=');
                     LocaleStrings.Add(kvpair[0], kvpair[1]);
                 }
             }
-
-            stopwatch.Stop();
-            Program.Log("info", "Locale files loaded! Elapsed " + stopwatch.Elapsed.ToString());
         }
     }
 }
