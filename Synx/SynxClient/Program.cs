@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using craftersmine.Synx.Client.Core;
+using craftersmine.Synx.Client.Gui;
 
 namespace craftersmine.Synx.Client
 {
@@ -36,6 +37,11 @@ namespace craftersmine.Synx.Client
         public static void Log(string prefix, string content)
         {
             StaticData.LoggerInstance.Log(prefix, content);
+        }
+
+        public static void LogOnlyConsole(string prefix, string content)
+        {
+            StaticData.LoggerInstance.Log(prefix, content, true);
         }
 
         public static void LogException(string prefix, Exception ex)
