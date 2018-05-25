@@ -1,48 +1,59 @@
-main.title=Основное
+main.title=РћСЃРЅРѕРІРЅРѕРµ
 
-main.tab.home=Главная
-main.tab.syncingObjectsList=Синхронизируемые объекты
-main.tab.devicesList=Список устройств
+main.tab.home=Р“Р»Р°РІРЅР°СЏ
+main.tab.syncingObjectsList=РЎРёРЅС…СЂРѕРЅРёР·РёСЂСѓРµРјС‹Рµ РѕР±СЉРµРєС‚С‹
+main.tab.devicesList=РЎРїРёСЃРѕРє СѓСЃС‚СЂРѕР№СЃС‚РІ
 
-main.label.welcome=Добро пожаловать в Synx! Выберите предложенное действие ниже для продолжения
+main.label.welcome=Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ Synx! Р’С‹Р±РµСЂРёС‚Рµ РїСЂРµРґР»РѕР¶РµРЅРЅРѕРµ РґРµР№СЃС‚РІРёРµ РЅРёР¶Рµ РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ
 
-main.links.connectToServer=Подключиться к серверу
-main.links.createServer=Создать собственный сервер
+main.links.connectToServer=РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ
+main.links.createServer=РЎРѕР·РґР°С‚СЊ СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ
 
-main.list.syncingObjects.column.folderName=Имя папки
-main.list.syncingObjects.column.folderPath=Путь к папке
-main.list.syncingObjects.column.syncStatus=Статус
-main.list.devicesList.column.model=Модель устройства
-main.list.devicesList.column.user=Имя пользователя
-main.list.devicesList.column.deviceType=Тип устройства
+main.list.syncingObjects.column.folderName=РРјСЏ РїР°РїРєРё
+main.list.syncingObjects.column.folderPath=РџСѓС‚СЊ Рє РїР°РїРєРµ
+main.list.syncingObjects.column.syncStatus=РЎС‚Р°С‚СѓСЃ
+main.list.devicesList.column.model=РњРѕРґРµР»СЊ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+main.list.devicesList.column.user=РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+main.list.devicesList.column.deviceType=РўРёРї СѓСЃС‚СЂРѕР№СЃС‚РІР°
 
-main.menu.header.user=Пользователь
-main.menu.header.sync=Синхронизация
-main.menu.header.service=Сервис
+main.menu.header.user=РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ
+main.menu.header.sync=РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ
+main.menu.header.service=РЎРµСЂРІРёСЃ
 main.menu.header.help=?
 
-main.menu.help.about=О программе
+main.menu.help.about=Рћ РїСЂРѕРіСЂР°РјРјРµ
 
-main.menu.service.settings=Настройки
+main.menu.service.settings=РќР°СЃС‚СЂРѕР№РєРё
+main.menu.service.log=Р–СѓСЂРЅР°Р» СЃРѕР±С‹С‚РёР№
 
-main.menu.Synx.connectToServer=Подключиться к серверу
-main.menu.Synx.disconnectFromServer=Отключиться от сервера
-main.menu.Synx.exit=Остановить синхронизацию и выйти
+main.menu.Synx.connectToServer=РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ
+main.menu.Synx.disconnectFromServer=РћС‚РєР»СЋС‡РёС‚СЊСЃСЏ РѕС‚ СЃРµСЂРІРµСЂР°
+main.menu.Synx.exit=РћСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ Рё РІС‹Р№С‚Рё
 
-main.menu.user.info=Информация о пользователе
-main.menu.user.clearAllSyncedData=Очистить хранилище на сервере этого устройства
-main.menu.user.restoreSyncedDataFrom=Восстановить данные из...
+main.menu.user.info=РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»Рµ
+main.menu.user.clearAllSyncedData=РћС‡РёСЃС‚РёС‚СЊ С…СЂР°РЅРёР»РёС‰Рµ РЅР° СЃРµСЂРІРµСЂРµ СЌС‚РѕРіРѕ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+main.menu.user.restoreSyncedDataFrom=Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РёР·...
 
-main.menu.sync.startSync=Синхронизировать
-main.menu.sync.stopSync=Остановить синхронизацию
-main.menu.sync.pauseSyncFor=Приостановить синхронизацию на...
+main.menu.sync.startSync=РЎРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°С‚СЊ
+main.menu.sync.stopSync=РћСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ
+main.menu.sync.pauseSyncFor=РџСЂРёРѕСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ РЅР°...
 
-main.tools.syncingObjects.add=Добавить папку
-main.tools.syncingObjects.remove=Удалить из списка
-main.tools.syncingObjects.startSync=Синхронизировать
-main.tools.syncingObjects.stopSync=Остановить синхронизацию
-main.tools.syncingObjects.clearList=Очистить список
+main.tools.syncingObjects.add=Р”РѕР±Р°РІРёС‚СЊ РїР°РїРєСѓ
+main.tools.syncingObjects.remove=РЈРґР°Р»РёС‚СЊ РёР· СЃРїРёСЃРєР°
+main.tools.syncingObjects.startSync=РЎРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°С‚СЊ
+main.tools.syncingObjects.stopSync=РћСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ
+main.tools.syncingObjects.clearList=РћС‡РёСЃС‚РёС‚СЊ СЃРїРёСЃРѕРє
 
-main.tools.devicesList.restoreDeviceData=Восстановить данные выбранного устройства
-main.tools.devicesList.showSyncedData=Показать синхронизированные данные этого устройства
-main.tools.devicesList.wipeSyncedData=Очистить синхронизированные данные устройства
+main.tools.devicesList.restoreDeviceData=Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+main.tools.devicesList.showSyncedData=РџРѕРєР°Р·Р°С‚СЊ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ СЌС‚РѕРіРѕ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+main.tools.devicesList.wipeSyncedData=РћС‡РёСЃС‚РёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ СѓСЃС‚СЂРѕР№СЃС‚РІР°
+
+main.status.ready=Р“РѕС‚РѕРІ
+main.status.connecting=РЎРѕРµРґРёРЅРµРЅРёРµ СЃ {address}:{port}...
+main.status.connected=РЎРѕРµРґРёРЅРµРЅРёРµ СЃ {address}:{port} СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ СѓСЃРїРµС€РЅРѕ!
+main.status.disconnectedWithError=РЎРѕРµРґРёРЅРµРЅРёРµ СЃ {address}:{port} Р±С‹Р»Рѕ СЂР°Р·РѕСЂРІР°РЅРѕ! РџСЂРёС‡РёРЅР°: {reason}
+main.status.disconnectedClearly=РћС‚РєР»СЋС‡РµРЅС‹ РѕС‚ {address}:{port}
+main.status.syncing=РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ РѕР±СЉРµРєС‚Р° {object} {percentage}%
+main.status.syncStopped=РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ РѕСЃС‚Р°РЅРѕРІР»РµРЅР°
+main.status.syncPaused=РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅР°
+main.status.synced=РЎРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅРѕ!
