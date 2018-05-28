@@ -15,10 +15,17 @@ namespace craftersmine.Synx.Client.Gui
     {
         public MainForm()
         {
+            IsApplicationActive = true;
             InitializeComponent();
             ApplyLocales(App.StaticData.ClientLocale);
             statusProgress.Visible = false;
-            statusBar.Text = App.StaticData.LocaleStrings["main.status.ready"];
+
+            StatusBarResetter(this, null);
+
+            Timer statusBarResetter = new Timer();
+            statusBarResetter.Tick += StatusBarResetter;
+            statusBarResetter.Interval = 15000;
+            statusBarResetter.Start();
 
             ClientController.OnCreatingClientInstance += OnCreatingClientInstance;
             ClientController.OnCreatedClientInstance += OnCreatedClientInstance;
@@ -142,6 +149,11 @@ namespace craftersmine.Synx.Client.Gui
             mainMenuUserRestoreSynced.Text = App.StaticData.LocaleStrings["main.menu.user.restoreSyncedDataFrom"];
             mainMenuUserInfo.Text = App.StaticData.LocaleStrings["main.menu.user.info"];
             Program.Log("info", "Locales applied!");
+        }
+
+        private void StatusBarResetter(object sender, EventArgs e)
+        {
+            statusBar.Text = statusBar.Text = App.StaticData.LocaleStrings["main.status.ready"];
         }
 
         private void mainMenuConnectToServer_Click(object sender, EventArgs e) => new ConnectTo().ShowDialog();
