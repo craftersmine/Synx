@@ -61,5 +61,5 @@ namespace craftersmine.Synx.Client.Utils
         public string EntryDateTime { get; set; }
     }
 
-    public enum LogEntryType { Error, Info, Warning, Critical, Connection, Success, Done, Debug, Stacktrace, Unknown, Crash }
+    public enum LogEntryType { Error = 1, Info = 0, Warning = 2, Critical = 5, Connection = 7, Success = 6, Done = 3, Debug = 10, Stacktrace = 4, Unknown = 9, Crash = 8 }
 }
