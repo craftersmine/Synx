@@ -68,7 +68,7 @@
             // labelPort
             // 
             this.labelPort.AutoSize = true;
-            this.labelPort.Location = new System.Drawing.Point(268, 38);
+            this.labelPort.Location = new System.Drawing.Point(270, 38);
             this.labelPort.Name = "labelPort";
             this.labelPort.Size = new System.Drawing.Size(107, 13);
             this.labelPort.TabIndex = 3;
