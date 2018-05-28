@@ -26,10 +26,12 @@ namespace craftersmine.Synx.Client.App
             stopwatch.Start();
 
             OnDemandPackage localePak = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\locales\\" + ClientLocale + ".pak"));
-
-            AddLocales(localePak, "common.strings");
+            
             AddLocales(localePak, "form.main.strings");
             AddLocales(localePak, "form.connectTo.strings");
+            AddLocales(localePak, "form.authorize.strings");
+            AddLocales(localePak, "common.strings");
+            AddLocales(localePak, "form.logs.strings");
 
             stopwatch.Stop();
             Program.Log(Utils.LogEntryType.Info, "Locale files loaded! Elapsed " + stopwatch.Elapsed.ToString());
