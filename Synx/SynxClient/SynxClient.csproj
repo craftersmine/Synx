@@ -79,6 +79,12 @@
     <Compile Include="Gui\ConnectTo.Designer.cs">
       <DependentUpon>ConnectTo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Log.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Log.Designer.cs">
+      <DependentUpon>Log.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\ConnectTo.resx">
       <DependentUpon>ConnectTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Log.resx">
+      <DependentUpon>Log.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
