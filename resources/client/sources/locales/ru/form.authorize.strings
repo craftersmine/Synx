@@ -1,0 +1,7 @@
+authorize.title=Авторизация
+
+authorize.label.login=Имя пользователя
+authorize.label.password=Пароль
+authorize.label.tip=Этот сервер требует авторизации для продолжения! Авторизуйтесь для продолжения
+
+authorize.button.authorize=Авторизоваться
