@@ -1,0 +1,19 @@
+logs.title=Журнал событий
+
+logs.button.sendLogs=Отправить журналы
+
+logs.column.tag=Тип
+logs.column.contents=Сообщение
+logs.column.date=Дата
+
+logs.entryType.error=ОШИБКА
+logs.entryType.info=ИНФОРМАЦИЯ
+logs.entryType.warning=ПРЕДУПРЕЖДЕНИЕ
+logs.entryType.stacktrace=СТЕК
+logs.entryType.critical=КРИТИЧЕСКОЕ
+logs.entryType.connection=СОЕДИНЕНИЕ
+logs.entryType.success=УСПЕХ
+logs.entryType.done=ВЫПОЛНЕНО
+logs.entryType.debug=ОТЛАДКА
+logs.entryType.crash=ФАТАЛЬНОЕ
+logs.entryType.unknown=НЕИЗВЕСТНОЕ
