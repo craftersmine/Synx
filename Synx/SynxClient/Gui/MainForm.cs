@@ -19,6 +19,7 @@ namespace craftersmine.Synx.Client.Gui
         {
             IsApplicationActive = true;
             InitializeComponent();
+            mainMenuServiceLog.Click += MainMenuServiceLog_Click;
             ApplyLocales(App.StaticData.ClientLocale);
             statusProgress.Visible = false;
 
@@ -36,6 +37,11 @@ namespace craftersmine.Synx.Client.Gui
             ClientController.OnError += ClientOnError;
             ClientController.OnMessage += ClientOnMessage;
             ClientController.OnOpen += ClienOnOpen;
+        }
+
+        private void MainMenuServiceLog_Click(object sender, EventArgs e)
+        {
+            new Log().ShowDialog();
         }
 
         private void ClientOnConnecting(object sender, ConnectingToServerEventArgs e)
