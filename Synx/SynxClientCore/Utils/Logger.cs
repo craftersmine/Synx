@@ -11,6 +11,7 @@ namespace craftersmine.Synx.Client.Utils
     {
         private string _loadTime;
         private string _file;
+        public List<LogEntry> LogEntries { get; } = new List<LogEntry>();
 
         public Logger(string name)
         {
@@ -24,19 +25,21 @@ namespace craftersmine.Synx.Client.Utils
             File.WriteAllText(_file, "");
         }
 
-        public void Log(string prefix, string contents, bool isOnlyConsole = false)
+        public void Log(LogEntryType prefix, string contents, bool isOnlyConsole = false)
         {
             string _date;
             if (DateTime.Now.Hour.ToString().Length < 2)
                 _date = DateTime.Now.ToShortDateString() + " 0" + DateTime.Now.ToShortTimeString();
             else _date = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
-            string logLineCtor = _date + " [" + prefix.ToUpper() + "]" + " " + contents + "\r\n";
+            string logLineCtor = _date + " [" + prefix.ToString().ToUpper() + "]" + " " + contents + "\r\n";
             if (!isOnlyConsole)
                 File.AppendAllText(_file, logLineCtor);
             Console.Write(logLineCtor);
+            LogEntry entry = new LogEntry { Contents = contents, EntryDateTime = _date, Type = prefix };
+            LogEntries.Add(entry);
         }
 
-        public void LogException(string prefix, Exception exception)
+        public void LogException(LogEntryType prefix, Exception exception)
         {
             string[] stacktrace = exception.StackTrace.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             Log(prefix, "An exception has occurred!");
@@ -50,4 +53,13 @@ namespace craftersmine.Synx.Client.Utils
             Log(prefix, "====  END OF STACKTRACE  ====");
         }
     }
+
+    public struct LogEntry
+    {
+        public LogEntryType Type { get; set; }
+        public string Contents { get; set; }
+        public string EntryDateTime { get; set; }
+    }
+
+    public enum LogEntryType { Error, Info, Warning, Critical, Connection, Success, Done, Debug, Stacktrace, Unknown, Crash }
 }

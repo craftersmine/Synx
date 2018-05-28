@@ -24,7 +24,7 @@ namespace craftersmine.Synx.Client.Gui
 
         public void ApplyLocales(string localeId)
         {
-            Program.Log("info", "Applying locales for \"connectTo\" Form...");
+            Program.Log(Utils.LogEntryType.Info, "Applying locales for \"connectTo\" Form...");
             this.Text = this.Text.Replace("{connect.title}", App.StaticData.LocaleStrings["connect.title"]);
             labelAddress.Text = App.StaticData.LocaleStrings["connect.label.address"];
             labelPort.Text = App.StaticData.LocaleStrings["connect.label.port"];
@@ -32,7 +32,7 @@ namespace craftersmine.Synx.Client.Gui
             autoconnectToLast.Text = App.StaticData.LocaleStrings["connect.checkbox.autoconnectToLast"];
             connect.Text = App.StaticData.LocaleStrings["connect.button.connectTo"];
             cancel.Text = App.StaticData.LocaleStrings["common.button.cancel"];
-            Program.Log("info", "Applying locales for \"connectTo\" Form... Done");
+            Program.Log(Utils.LogEntryType.Done, "Applying locales for \"connectTo\" Form... Done");
         }
 
         private void connect_Click(object sender, EventArgs e)

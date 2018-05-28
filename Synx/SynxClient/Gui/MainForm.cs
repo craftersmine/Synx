@@ -59,13 +59,13 @@ namespace craftersmine.Synx.Client.Gui
         private void ClientOnMessage(object sender, WebSocketSharp.MessageEventArgs e)
         {
             //statusBar.Text = e.Data;
-            Program.LogOnlyConsole("info/debug", "Message received: " + e.Data);
+            Program.LogOnlyConsole(Utils.LogEntryType.Debug, "Message received: " + e.Data);
         }
 
         private void ClientOnError(object sender, WebSocketSharp.ErrorEventArgs e)
         {
             //statusBar.Text = e.Message;
-            Program.LogException("error", e.Exception);
+            Program.LogException(Utils.LogEntryType.Stacktrace, e.Exception);
         }
 
         private void ClientOnClose(object sender, WebSocketSharp.CloseEventArgs e)
@@ -109,7 +109,7 @@ namespace craftersmine.Synx.Client.Gui
 
         private void ApplyLocales(string localeId)
         {
-            Program.Log("info", "Applying locales...");
+            Program.Log(Utils.LogEntryType.Info, "Applying locales...");
             this.Text = Text.Replace("{main.title}", App.StaticData.LocaleStrings["main.title"]);
 
             mainTabDevicesList.Text = App.StaticData.LocaleStrings["main.tab.devicesList"];
@@ -150,7 +150,7 @@ namespace craftersmine.Synx.Client.Gui
             mainMenuUserClearAllData.Text = App.StaticData.LocaleStrings["main.menu.user.clearAllSyncedData"];
             mainMenuUserRestoreSynced.Text = App.StaticData.LocaleStrings["main.menu.user.restoreSyncedDataFrom"];
             mainMenuUserInfo.Text = App.StaticData.LocaleStrings["main.menu.user.info"];
-            Program.Log("info", "Locales applied!");
+            Program.Log(Utils.LogEntryType.Done, "Locales applied!");
         }
 
         private void StatusBarResetter(object sender, EventArgs e)

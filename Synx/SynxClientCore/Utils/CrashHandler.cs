@@ -10,11 +10,11 @@ namespace craftersmine.Synx.Client.Utils
     {
         public static void HandleException(Exception exception)
         {
-            logException("error", exception);
+            logException(LogEntryType.Stacktrace, exception);
             Environment.Exit(0);
         }
 
-        private static void logException(string prefix, Exception ex)
+        private static void logException(LogEntryType prefix, Exception ex)
         {
             StaticData.LoggerInstance.LogException(prefix, ex);
         }

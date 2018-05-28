@@ -21,7 +21,7 @@ namespace craftersmine.Synx.Client.App
 
         public static void LoadLocales()
         {
-            Program.Log("info", "Loading locale files (" + ClientLocale + ")...");
+            Program.Log(Utils.LogEntryType.Info, "Loading locale files (" + ClientLocale + ")...");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -32,7 +32,7 @@ namespace craftersmine.Synx.Client.App
             AddLocales(localePak, "form.connectTo.strings");
 
             stopwatch.Stop();
-            Program.Log("info", "Locale files loaded! Elapsed " + stopwatch.Elapsed.ToString());
+            Program.Log(Utils.LogEntryType.Info, "Locale files loaded! Elapsed " + stopwatch.Elapsed.ToString());
         }
 
         public static void SaveSettings()
