@@ -13,6 +13,8 @@ namespace craftersmine.Synx.Client.Gui
 {
     public partial class MainForm : Form
     {
+        private bool IsApplicationActive = true;
+
         public MainForm()
         {
             IsApplicationActive = true;

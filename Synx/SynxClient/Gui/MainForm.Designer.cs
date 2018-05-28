@@ -57,8 +57,6 @@
             this.mainTabHome = new System.Windows.Forms.TabPage();
             this.mainTabHomePanel = new System.Windows.Forms.Panel();
             this.welcomeLabel = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.logoLabel = new System.Windows.Forms.Label();
             this.linkCreateServer = new System.Windows.Forms.LinkLabel();
             this.linkConnectToServer = new System.Windows.Forms.LinkLabel();
@@ -70,13 +68,8 @@
             this.folderPathColumnHeaderSyncingObjectsList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.syncStatusColumnHeaderSyncingObjectsList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.syncingAdd = new System.Windows.Forms.ToolStripButton();
-            this.syncingRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.syncingStartSync = new System.Windows.Forms.ToolStripButton();
-            this.syncingStopSync = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.syncingClearList = new System.Windows.Forms.ToolStripButton();
             this.mainTabDevicesList = new System.Windows.Forms.TabPage();
             this.mainTabDevicesListPanel = new System.Windows.Forms.Panel();
             this.devicesList = new System.Windows.Forms.ListView();
@@ -85,23 +78,30 @@
             this.deviceUserColumnHeaderDevList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceTypeColumnHeaderDevList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.syncingAdd = new System.Windows.Forms.ToolStripButton();
+            this.syncingRemove = new System.Windows.Forms.ToolStripButton();
+            this.syncingStartSync = new System.Windows.Forms.ToolStripButton();
+            this.syncingStopSync = new System.Windows.Forms.ToolStripButton();
+            this.syncingClearList = new System.Windows.Forms.ToolStripButton();
             this.devListRestoreData = new System.Windows.Forms.ToolStripButton();
             this.devListShowSynced = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.devListWipeSyncedData = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabController.SuspendLayout();
             this.mainTabHome.SuspendLayout();
             this.mainTabHomePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.mainTabSyncingObjectsList.SuspendLayout();
             this.mainTabSyncingObjects.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.mainTabDevicesList.SuspendLayout();
             this.mainTabDevicesListPanel.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -273,6 +273,7 @@
             // 
             // statusBar
             // 
+            this.statusBar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(374, 17);
             this.statusBar.Spring = true;
@@ -329,22 +330,6 @@
             this.welcomeLabel.Size = new System.Drawing.Size(323, 79);
             this.welcomeLabel.TabIndex = 11;
             this.welcomeLabel.Text = "{main.label.welcome}";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(27, 200);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.TabIndex = 10;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(27, 144);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
             // 
             // logoLabel
             // 
@@ -466,60 +451,15 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // syncingAdd
-            // 
-            this.syncingAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.syncingAdd.Image = ((System.Drawing.Image)(resources.GetObject("syncingAdd.Image")));
-            this.syncingAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.syncingAdd.Name = "syncingAdd";
-            this.syncingAdd.Size = new System.Drawing.Size(23, 22);
-            this.syncingAdd.Text = "{main.tools.syncingObjects.add}";
-            // 
-            // syncingRemove
-            // 
-            this.syncingRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.syncingRemove.Image = ((System.Drawing.Image)(resources.GetObject("syncingRemove.Image")));
-            this.syncingRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.syncingRemove.Name = "syncingRemove";
-            this.syncingRemove.Size = new System.Drawing.Size(23, 22);
-            this.syncingRemove.Text = "{main.tools.syncingObjects.remove}";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // syncingStartSync
-            // 
-            this.syncingStartSync.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.syncingStartSync.Image = ((System.Drawing.Image)(resources.GetObject("syncingStartSync.Image")));
-            this.syncingStartSync.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.syncingStartSync.Name = "syncingStartSync";
-            this.syncingStartSync.Size = new System.Drawing.Size(23, 22);
-            this.syncingStartSync.Text = "{main.tools.syncingObjects.startSync}";
-            // 
-            // syncingStopSync
-            // 
-            this.syncingStopSync.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.syncingStopSync.Image = ((System.Drawing.Image)(resources.GetObject("syncingStopSync.Image")));
-            this.syncingStopSync.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.syncingStopSync.Name = "syncingStopSync";
-            this.syncingStopSync.Size = new System.Drawing.Size(23, 22);
-            this.syncingStopSync.Text = "{main.tools.syncingObjects.stopSync}";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // syncingClearList
-            // 
-            this.syncingClearList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.syncingClearList.Image = ((System.Drawing.Image)(resources.GetObject("syncingClearList.Image")));
-            this.syncingClearList.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.syncingClearList.Name = "syncingClearList";
-            this.syncingClearList.Size = new System.Drawing.Size(23, 22);
-            this.syncingClearList.Text = "{main.tools.syncingObjects.clearList}";
             // 
             // mainTabDevicesList
             // 
@@ -598,6 +538,72 @@
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(27, 200);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(27, 144);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // syncingAdd
+            // 
+            this.syncingAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncingAdd.Image = ((System.Drawing.Image)(resources.GetObject("syncingAdd.Image")));
+            this.syncingAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.syncingAdd.Name = "syncingAdd";
+            this.syncingAdd.Size = new System.Drawing.Size(23, 22);
+            this.syncingAdd.Text = "{main.tools.syncingObjects.add}";
+            // 
+            // syncingRemove
+            // 
+            this.syncingRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncingRemove.Image = ((System.Drawing.Image)(resources.GetObject("syncingRemove.Image")));
+            this.syncingRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.syncingRemove.Name = "syncingRemove";
+            this.syncingRemove.Size = new System.Drawing.Size(23, 22);
+            this.syncingRemove.Text = "{main.tools.syncingObjects.remove}";
+            // 
+            // syncingStartSync
+            // 
+            this.syncingStartSync.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncingStartSync.Image = ((System.Drawing.Image)(resources.GetObject("syncingStartSync.Image")));
+            this.syncingStartSync.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.syncingStartSync.Name = "syncingStartSync";
+            this.syncingStartSync.Size = new System.Drawing.Size(23, 22);
+            this.syncingStartSync.Text = "{main.tools.syncingObjects.startSync}";
+            // 
+            // syncingStopSync
+            // 
+            this.syncingStopSync.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncingStopSync.Image = ((System.Drawing.Image)(resources.GetObject("syncingStopSync.Image")));
+            this.syncingStopSync.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.syncingStopSync.Name = "syncingStopSync";
+            this.syncingStopSync.Size = new System.Drawing.Size(23, 22);
+            this.syncingStopSync.Text = "{main.tools.syncingObjects.stopSync}";
+            // 
+            // syncingClearList
+            // 
+            this.syncingClearList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.syncingClearList.Image = ((System.Drawing.Image)(resources.GetObject("syncingClearList.Image")));
+            this.syncingClearList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.syncingClearList.Name = "syncingClearList";
+            this.syncingClearList.Size = new System.Drawing.Size(23, 22);
+            this.syncingClearList.Text = "{main.tools.syncingObjects.clearList}";
+            // 
             // devListRestoreData
             // 
             this.devListRestoreData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -615,11 +621,6 @@
             this.devListShowSynced.Name = "devListShowSynced";
             this.devListShowSynced.Size = new System.Drawing.Size(23, 22);
             this.devListShowSynced.Text = "{main.tools.devicesList.showSyncedData}";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // devListWipeSyncedData
             // 
@@ -654,8 +655,6 @@
             this.mainTabHome.ResumeLayout(false);
             this.mainTabHomePanel.ResumeLayout(false);
             this.mainTabHomePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.mainTabSyncingObjectsList.ResumeLayout(false);
             this.mainTabSyncingObjects.ResumeLayout(false);
             this.mainTabSyncingObjects.PerformLayout();
@@ -666,6 +665,8 @@
             this.mainTabDevicesListPanel.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
