@@ -106,6 +106,7 @@
             // 
             // cancel
             // 
+            this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel.Location = new System.Drawing.Point(177, 125);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(75, 23);
@@ -128,8 +129,10 @@
             // 
             // ConnectTo
             // 
+            this.AcceptButton = this.connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancel;
             this.ClientSize = new System.Drawing.Size(389, 160);
             this.Controls.Add(this.port);
             this.Controls.Add(this.cancel);
