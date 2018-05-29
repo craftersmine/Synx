@@ -28,5 +28,14 @@ namespace craftersmine.Synx.Client.Gui
             cancel.Text = App.StaticData.LocaleStrings["common.button.cancel"];
             Program.Log(Utils.LogEntryType.Done, "Applying locales for \"authorize\" Form... Done");
         }
+
+        private void buttonAuthorize_Click(object sender, EventArgs e)
+        {
+            string encryptedPass = Utils.MD5Compute.ComputeMD5(Utils.MD5Compute.ComputeMD5(password.Text));
+            App.StaticData.ClientSettings.Password = encryptedPass;
+            App.StaticData.ClientSettings.Username = login.Text;
+            App.StaticData.ClientSettings.Save();
+            
+        }
     }
 }

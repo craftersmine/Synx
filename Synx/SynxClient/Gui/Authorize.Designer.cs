@@ -80,15 +80,18 @@
             // 
             // buttonAuthorize
             // 
+            this.buttonAuthorize.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonAuthorize.Location = new System.Drawing.Point(174, 260);
             this.buttonAuthorize.Name = "buttonAuthorize";
             this.buttonAuthorize.Size = new System.Drawing.Size(154, 23);
             this.buttonAuthorize.TabIndex = 5;
             this.buttonAuthorize.Text = "{authorize.button.authorize}";
             this.buttonAuthorize.UseVisualStyleBackColor = true;
+            this.buttonAuthorize.Click += new System.EventHandler(this.buttonAuthorize_Click);
             // 
             // cancel
             // 
+            this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel.Location = new System.Drawing.Point(85, 260);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(83, 23);
@@ -98,8 +101,10 @@
             // 
             // Authorize
             // 
+            this.AcceptButton = this.buttonAuthorize;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancel;
             this.ClientSize = new System.Drawing.Size(340, 295);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.buttonAuthorize);
