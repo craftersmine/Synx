@@ -12,9 +12,9 @@ namespace craftersmine.Synx.Client.Core
         public delegate void OnOpenEventDelegate(object sender, EventArgs e);
         public delegate void OnCloseEventDelegate(object sender, WebSocketSharp.CloseEventArgs e);
         public delegate void OnErrorEventDelegate(object sender, WebSocketSharp.ErrorEventArgs e);
-        public delegate void OnMessageEventDelegate(object sender, WebSocketSharp.MessageEventArgs e);
+        public delegate void OnMessageEventDelegate(object sender, OnMessageEventArgs e);
         public delegate void OnCreatingClientInstanceDelegate(object sender, EventArgs e);
-        public delegate void OnCreatedClientInstanceDelegate(object sender, CreationEventDelegate e);
+        public delegate void OnCreatedClientInstanceDelegate(object sender, CreationEventArgs e);
         public delegate void OnConnectingToServerDelegate(object sender, ConnectingToServerEventArgs e);
 
         public static event OnCreatingClientInstanceDelegate OnCreatingClientInstance;
@@ -36,8 +36,8 @@ namespace craftersmine.Synx.Client.Core
             StaticData.ClientInstance.OnError += Client_OnError;
             StaticData.ClientInstance.OnMessage += Client_OnMessage;
             StaticData.ClientInstance.OnOpen += Client_OnOpen;
-            StaticData.LoggerInstance.Log(Utils.LogEntryType.Info, "Client instance created!");
-            OnCreatedClientInstance?.Invoke(null, new CreationEventDelegate() { IsSuccessful = true });
+            StaticData.LoggerInstance.Log(Utils.LogEntryType.Done, "Client instance created!");
+            OnCreatedClientInstance?.Invoke(null, new CreationEventArgs() { IsSuccessful = true });
         }
 
         public static void InitializeConnection()
@@ -55,13 +55,45 @@ namespace craftersmine.Synx.Client.Core
 
         private static void Client_OnOpen(object sender, EventArgs e)
         {
-            StaticData.LoggerInstance.Log(Utils.LogEntryType.Info, "Connected to \"" + StaticData.ClientInstance.Url + "\"!");
+            StaticData.LoggerInstance.Log(Utils.LogEntryType.Success, "Connected to \"" + StaticData.ClientInstance.Url + "\"!");
             OnOpen?.Invoke(sender, e);
+
+            StaticData.ClientInstance.SendAsync(PacketBuilder(MessageType.Authorization, "REQUESTING_AUTH_REQUIREMENT"), new Action<bool>((b)=> { })); 
         }
 
         private static void Client_OnMessage(object sender, WebSocketSharp.MessageEventArgs e)
         {
-            OnMessage?.Invoke(sender, e);   
+            if (e.IsText)
+            {
+                string[] packetMetaSplit = e.Data.Split('#');
+                if (packetMetaSplit[0] == "SYNX" && packetMetaSplit[2] == "PACKETEND")
+                {
+                    string[] packetDataSplit = packetMetaSplit[1].Split('$');
+
+                    string packetType = packetDataSplit[0];
+                    string packetData = packetDataSplit[1];
+                    string packetAdditionals = packetDataSplit[2];
+
+                    switch (packetType)
+                    {
+                        case "AUTHORIZATION":
+                            if (packetData == "REQUESTING_AUTHORIZATION")
+                                OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.Authorization, Data = e.Data});
+                            break;
+                        default:
+                            OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.Unknown, Data = e.Data });
+                            break;
+                    }
+                }
+            }
+            else if (e.IsBinary)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private static void Client_OnError(object sender, WebSocketSharp.ErrorEventArgs e)
@@ -84,6 +116,26 @@ namespace craftersmine.Synx.Client.Core
             StaticData.ClientInstance = null;
             OnClose.Invoke(sender, e);
         }
+
+        private static string PacketBuilder(MessageType packetType, string packetData, string additionalData)
+        {
+            return "SYNX#" + packetType.ToString().ToUpper() + "$" + packetData + "$" + additionalData + "#PACKETEND";
+        }
+        
+        private static string PacketBuilder(MessageType packetType, string packetData)
+        {
+            return PacketBuilder(packetType, packetData, "NO_ADDITIONAL_DATA_PROVIDED");
+        }
+
+        public static void SendPacket(MessageType messageType, string packetData)
+        {
+            StaticData.ClientInstance.SendAsync(PacketBuilder(messageType, packetData), new Action<bool>((b)=> { }));
+        }
+
+        public static void SendPacket(MessageType messageType, string packetData, string additionalData)
+        {
+            StaticData.ClientInstance.SendAsync(PacketBuilder(messageType, packetData, additionalData), new Action<bool>((b) => { }));
+        }
     }
 
     public class ConnectingToServerEventArgs
@@ -92,8 +144,19 @@ namespace craftersmine.Synx.Client.Core
         public int Port { get; set; }
     }
 
-    public class CreationEventDelegate
+    public class CreationEventArgs
     {
         public bool IsSuccessful { get; set; }
+    }
+
+    public class OnMessageEventArgs
+    {
+        public MessageType MessageType { get; set; }
+        public string Data { get; set; }
+    }
+
+    public enum MessageType
+    {
+        Authorization, Unknown
     }
 }

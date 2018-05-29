@@ -20,6 +20,7 @@ namespace craftersmine.Synx.Client.Gui
             IsApplicationActive = true;
             InitializeComponent();
             mainMenuServiceLog.Click += MainMenuServiceLog_Click;
+            mainMenuHelpAbout.Click += MainMenuHelpAbout_Click;
             ApplyLocales(App.StaticData.ClientLocale);
             statusProgress.Visible = false;
 
@@ -37,6 +38,11 @@ namespace craftersmine.Synx.Client.Gui
             ClientController.OnError += ClientOnError;
             ClientController.OnMessage += ClientOnMessage;
             ClientController.OnOpen += ClienOnOpen;
+        }
+
+        private void MainMenuHelpAbout_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void MainMenuServiceLog_Click(object sender, EventArgs e)
@@ -62,9 +68,24 @@ namespace craftersmine.Synx.Client.Gui
             statusBar.Text = App.StaticData.LocaleStrings["main.status.connected"].Replace("{address}", App.StaticData.ClientSettings.LastServerAddress).Replace("{port}", App.StaticData.ClientSettings.LastServerPort.ToString());
         }
 
-        private void ClientOnMessage(object sender, WebSocketSharp.MessageEventArgs e)
+        private void ClientOnMessage(object sender, OnMessageEventArgs e)
         {
-            //statusBar.Text = e.Data;
+            switch (e.MessageType)
+            {
+                case MessageType.Authorization:
+                    Program.Log(Utils.LogEntryType.Info, "Server requested authorization!");
+                    switch (new Authorize().ShowDialog())
+                    {
+                        case DialogResult.OK:
+                            ClientController.SendPacket(MessageType.Authorization, "AUTHORIZATION_RESPONSE_USERDATA", App.StaticData.ClientSettings.Username + "!" + App.StaticData.ClientSettings.Password);
+                            break;
+                        case DialogResult.Cancel:
+                        default:
+                            ClientController.CloseConnection();
+                            break;
+                    }
+                    break;
+            }
             Program.LogOnlyConsole(Utils.LogEntryType.Debug, "Message received: " + e.Data);
         }
 
@@ -93,7 +114,7 @@ namespace craftersmine.Synx.Client.Gui
             }));
         }
 
-        private void OnCreatedClientInstance(object sender, CreationEventDelegate e)
+        private void OnCreatedClientInstance(object sender, CreationEventArgs e)
         {
             statusProgress.Visible = true;
             statusProgress.Style = ProgressBarStyle.Continuous;
