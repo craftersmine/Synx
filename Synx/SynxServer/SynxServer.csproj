@@ -79,6 +79,7 @@
     <Compile Include="StaticData.cs" />
     <Compile Include="Utils\CrashHandler.cs" />
     <Compile Include="Utils\Logger.cs" />
+    <Compile Include="Utils\MD5.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -55,6 +55,7 @@
     <Compile Include="Utils\CrashHandler.cs" />
     <Compile Include="Utils\ImageFromBytesConverter.cs" />
     <Compile Include="Utils\Logger.cs" />
+    <Compile Include="Utils\MD5.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
