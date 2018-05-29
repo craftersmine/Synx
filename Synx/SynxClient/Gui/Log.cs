@@ -44,7 +44,7 @@ namespace craftersmine.Synx.Client.Gui
         {
             foreach (var entry in StaticData.LoggerInstance.LogEntries)
             {
-                int imageId = (int)Utils.LogEntryType.Unknown;
+                int imageId = (int)entry.Type;
                 string entryType = App.StaticData.LocaleStrings["logs.entryType.unknown"];
                 switch (entry.Type)
                 {
@@ -84,7 +84,12 @@ namespace craftersmine.Synx.Client.Gui
                         entryType = App.StaticData.LocaleStrings["logs.entryType.unknown"];
                         break;
                 }
+#if DEBUG
                 listView1.Items.Add(new ListViewItem(new string[] { null, entry.EntryDateTime, entryType, entry.Contents }, imageId));
+#else
+                if (entry.Type != Utils.LogEntryType.Debug)
+                    listView1.Items.Add(new ListViewItem(new string[] { null, entry.EntryDateTime, entryType, entry.Contents }, imageId));
+#endif
             }
         }
 
@@ -98,6 +103,11 @@ namespace craftersmine.Synx.Client.Gui
             close.Text = App.StaticData.LocaleStrings["common.button.close"];
             dateCol.Text = App.StaticData.LocaleStrings["logs.column.date"];
             Program.Log(Utils.LogEntryType.Done, "Applying locales for \"logs\" Form... Done");
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

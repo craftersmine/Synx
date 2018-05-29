@@ -33,9 +33,9 @@
             this.close = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.iconCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tagCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contentsCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
@@ -56,6 +56,7 @@
             this.close.TabIndex = 1;
             this.close.Text = "{common.button.close}";
             this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // listView1
             // 
@@ -64,6 +65,7 @@
             this.dateCol,
             this.tagCol,
             this.contentsCol});
+            this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(635, 480);
@@ -77,6 +79,11 @@
             this.iconCol.Text = "";
             this.iconCol.Width = 25;
             // 
+            // dateCol
+            // 
+            this.dateCol.Text = "{logs.column.contents}";
+            this.dateCol.Width = 87;
+            // 
             // tagCol
             // 
             this.tagCol.Text = "{logs.column.tag}";
@@ -86,11 +93,6 @@
             // 
             this.contentsCol.Text = "{logs.column.contents}";
             this.contentsCol.Width = 401;
-            // 
-            // dateCol
-            // 
-            this.dateCol.Text = "{logs.column.contents}";
-            this.dateCol.Width = 87;
             // 
             // imageList
             // 
