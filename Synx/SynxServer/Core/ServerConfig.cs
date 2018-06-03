@@ -41,6 +41,17 @@ namespace craftersmine.Synx.Server.Core
             else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file! Check server environment integrity!");
         }
 
+        public static long GetLong(string key)
+        {
+            if (cfg.TryGetValue(key, out string val))
+            {
+                if (long.TryParse(val, out long intVal))
+                    return intVal;
+                else throw new InvalidDataException("Config key \"" + key + "\" has invalid type, expected value is long numeric value! Check your server config!");
+            }
+            else throw new KeyNotFoundException("Config key \"" + key + "\" not found in file! Check server environment integrity!");
+        }
+
         public static bool GetBool(string key)
         {
             if (cfg.TryGetValue(key, out string val))
