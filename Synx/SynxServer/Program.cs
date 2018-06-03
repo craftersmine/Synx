@@ -49,8 +49,7 @@ namespace craftersmine.Synx.Server
                 while (StaticData.IsServerRunning)
                 {
                     string inp = Console.ReadLine();
-                    if (inp.ToLower() == "stop")
-                        ServerController.StopServer();
+                    StaticData.CommandParser.ParseInput(inp);
                 }
                 Log("info", "Synx server was stopped!");
             }
