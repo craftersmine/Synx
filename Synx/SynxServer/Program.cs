@@ -20,6 +20,9 @@ namespace craftersmine.Synx.Server
         {
             try
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(" SYNX SERVER (c) craftersmine 2018");
+                Console.ResetColor();
                 StaticData.ServerRoot = Environment.CurrentDirectory;
                 StaticData.LogsPath = Path.Combine(StaticData.ServerRoot, "logs");
                 StaticData.LoggerInstance = new Utils.Logger("synx-server");
