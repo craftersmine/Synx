@@ -19,14 +19,15 @@ namespace craftersmine.Synx.Server.Core
             predefinedConfig.Add("motd", "Synx Server");
             predefinedConfig.Add("require-auth", "true");
             predefinedConfig.Add("allow-anonymous", "false");
+            predefinedConfig.Add("user-default-quota", "1073741824");
 
             log("info", "Initiating server environment...");
-            StaticData.UserStorage = Path.Combine(serverRoot, "user-storage");
+            StaticData.UserStorageFolderPath = Path.Combine(serverRoot, "user-storage");
             string serverPropsFile = Path.Combine(serverRoot, "server-properties.cfg");
-            string banlistFile = Path.Combine(serverRoot, "banned-accounts.lst");
-            string accountsDataFile = Path.Combine(serverRoot, "accounts-data.lst");
-            if (!Directory.Exists(StaticData.UserStorage))
-                Directory.CreateDirectory(StaticData.UserStorage);
+            StaticData.BannedFilePath = Path.Combine(serverRoot, "banned-accounts.lst");
+            StaticData.AccountsFilePath = Path.Combine(serverRoot, "accounts-data.lst");
+            if (!Directory.Exists(StaticData.UserStorageFolderPath))
+                Directory.CreateDirectory(StaticData.UserStorageFolderPath);
             if (!File.Exists(serverPropsFile))
             {
                 List<string> cfg = new List<string>();
@@ -54,10 +55,10 @@ namespace craftersmine.Synx.Server.Core
                     File.WriteAllLines(serverPropsFile, lines);
                 }
             }
-            if (!File.Exists(banlistFile))
-                File.WriteAllText(banlistFile, "");
-            if (!File.Exists(accountsDataFile))
-                File.WriteAllText(accountsDataFile, "");
+            if (!File.Exists(StaticData.BannedFilePath))
+                File.WriteAllText(StaticData.BannedFilePath, "");
+            if (!File.Exists(StaticData.AccountsFilePath))
+                File.WriteAllText(StaticData.AccountsFilePath, "");
             log("info", "Server environment initiated!");
         }
 
