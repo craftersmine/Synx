@@ -29,6 +29,9 @@ namespace craftersmine.Synx.Server
                 Log("info", "Initiating Synx server...");
                 ServerEnvironment.InitiateEnvironment(StaticData.ServerRoot);
                 ServerConfig.LoadConfig();
+                StaticData.UserStorage = new UserStorage();
+                StaticData.CommandParser = new CommandParser();
+                CommandRegister.RegisterCommands();
                 string serverIp = ServerConfig.GetString("bind-ip");
                 if (serverIp != string.Empty && serverIp != null && serverIp != "")
                 {
