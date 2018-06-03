@@ -70,10 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\CommandParser.cs" />
     <Compile Include="Core\ServerBehaviour.cs" />
     <Compile Include="Core\ServerConfig.cs" />
     <Compile Include="Core\ServerController.cs" />
     <Compile Include="Core\ServerEnvironment.cs" />
+    <Compile Include="Core\UserStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticData.cs" />
