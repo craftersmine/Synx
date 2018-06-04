@@ -1,0 +1,63 @@
+main.title=Main
+
+main.tab.home=Home
+main.tab.syncingObjectsList=Syncing Objects
+main.tab.devicesList=Device List
+
+main.label.welcome=Welcome to Synx! Select action below to start
+
+main.links.connectToServer=Connect to server
+main.links.createServer=Create server
+
+main.list.syncingObjects.column.folderName=Folder name
+main.list.syncingObjects.column.folderPath=Folder path
+main.list.syncingObjects.column.syncStatus=Status
+main.list.devicesList.column.model=Device model
+main.list.devicesList.column.user=Username
+main.list.devicesList.column.deviceType=Device type
+
+main.menu.header.user=User
+main.menu.header.sync=Sync
+main.menu.header.service=Service
+main.menu.header.help=?
+
+main.menu.help.about=About
+
+main.menu.service.settings=Settings
+main.menu.service.log=Event Logs
+
+main.menu.Synx.connectToServer=Connect to server
+main.menu.Synx.disconnectFromServer=Disconnect from server
+main.menu.Synx.exit=Stop sync and exit
+
+main.menu.user.info=User info
+main.menu.user.clearAllSyncedData=Wipe server storage of this device
+main.menu.user.restoreSyncedDataFrom=Restore data from...
+
+main.menu.sync.startSync=Sync
+main.menu.sync.stopSync=Stop sync
+main.menu.sync.pauseSyncFor=Pause sync for...
+
+main.tools.syncingObjects.add=Add folder
+main.tools.syncingObjects.remove=Remove from list
+main.tools.syncingObjects.startSync=Sync
+main.tools.syncingObjects.stopSync=Stop sync
+main.tools.syncingObjects.clearList=Clear list
+
+main.tools.devicesList.restoreDeviceData=Restore data of selected device
+main.tools.devicesList.showSyncedData=Show synced data of selected device
+main.tools.devicesList.wipeSyncedData=Clear synced data of selected device
+
+main.status.ready=Ready!
+main.status.connecting=Connecting to {address}:{port}...
+main.status.connected=Connected to {address}:{port} successful!
+main.status.disconnectedWithError=Disconnected from {address}:{port}! Reason: {reason}
+main.status.disconnectedClearly=Disconnected from {address}:{port}
+main.status.syncing=Syncing object: {object} {percentage}%
+main.status.syncStopped=Sync stopped!
+main.status.syncPaused=Sync paused
+main.status.synced=Synced successful!
+main.status.authorization.success=Authorized successful!
+main.status.authorization.banned=This user banned on this server!
+main.status.authorization.passwordIncorrect=Incorrect user password! Check password and try again
+main.status.authorization.userNotFound=This user not found in server users database! Feedback your server administrator!

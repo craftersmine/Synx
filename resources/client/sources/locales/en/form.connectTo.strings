@@ -1,0 +1,9 @@
+connect.title=Connect to...
+
+connect.label.tip=Enter server address and port to connect.
+connect.label.address=Server address/IP:
+connect.label.port=Server port:
+
+connect.checkbox.autoconnectToLast=Save server data and connect to server automaticaly
+
+connect.button.connectTo=Connect

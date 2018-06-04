@@ -1,0 +1,19 @@
+logs.title=Event logs
+
+logs.button.sendLogs=Send logs to developer
+
+logs.column.tag=Type
+logs.column.contents=Contents
+logs.column.date=Date
+
+logs.entryType.error=ERROR
+logs.entryType.info=INFORMATION
+logs.entryType.warning=WARNING
+logs.entryType.stacktrace=STACKTRACE
+logs.entryType.critical=CRITICAL
+logs.entryType.connection=CONNECTION
+logs.entryType.success=SUCCESS
+logs.entryType.done=DONE
+logs.entryType.debug=DEBUG
+logs.entryType.crash=CRASH
+logs.entryType.unknown=UNKNOWN

@@ -1,0 +1,9 @@
+common.button.cancel=Cancel
+common.button.ok=OK
+common.button.apply=Apply
+common.button.close=Close
+
+common.message.title.error=Error!
+common.message.title.information=Information
+common.message.title.warning=Warning!
+common.message.title.message=Message

@@ -1,0 +1,7 @@
+authorize.title=Authorization
+
+authorize.label.login=Username
+authorize.label.password=Password
+authorize.label.tip=This server requires user authorization! Authorize to continue
+
+authorize.button.authorize=Authorize
