@@ -74,19 +74,67 @@ namespace craftersmine.Synx.Client.Gui
             {
                 case MessageType.Authorization:
                     Program.Log(Utils.LogEntryType.Info, "Server requested authorization!");
-                    switch (new Authorize().ShowDialog())
-                    {
-                        case DialogResult.OK:
-                            ClientController.SendPacket(MessageType.Authorization, "AUTHORIZATION_RESPONSE_USERDATA", App.StaticData.ClientSettings.Username + "!" + App.StaticData.ClientSettings.Password);
-                            break;
-                        case DialogResult.Cancel:
-                        default:
-                            ClientController.CloseConnection();
-                            break;
-                    }
+                    RequestAuthData();
+                    break;
+                case MessageType.AuthorizationSuccess:
+                    SetStatus("main.status.authorization.success");
+                    break;
+                case MessageType.AuthorizationFailedUserBanned:
+                    SetStatus("main.status.authorization.banned");
+                    ShowMessageBox("main.status.authorization.banned", MessageBoxIcon.Error);
+                    ClientController.CloseConnection();
+                    break;
+                case MessageType.AuthorizationFailedUserPasswordIncorrect:
+                    SetStatus("main.status.authorization.passwordIncorrect");
+                    ShowMessageBox("main.status.authorization.passwordIncorrect", MessageBoxIcon.Exclamation);
+                    RequestAuthData();
+                    break;
+                case MessageType.AuthorizationFailedUserNotFound:
+                    SetStatus("main.status.authorization.userNotFound");
+                    ShowMessageBox("main.status.authorization.userNotFound", MessageBoxIcon.Error);
+                    RequestAuthData();
                     break;
             }
             Program.LogOnlyConsole(Utils.LogEntryType.Debug, "Message received: " + e.Data);
+        }
+
+        private void RequestAuthData()
+        {
+            switch (new Authorize().ShowDialog())
+            {
+                case DialogResult.OK:
+                    ClientController.SendPacket(MessageType.Authorization, "AUTHORIZATION_RESPONSE_USERDATA", App.StaticData.ClientSettings.Username + "!" + App.StaticData.ClientSettings.Password);
+                    break;
+                case DialogResult.Cancel:
+                default:
+                    ClientController.CloseConnection();
+                    break;
+            }
+        }
+
+        private void SetStatus(string localizationKey)
+        {
+            statusBar.Text = App.StaticData.LocaleStrings[localizationKey];
+        }
+
+        private DialogResult ShowMessageBox(string contentsLocaleKey, MessageBoxIcon messageBoxIcon = MessageBoxIcon.None, MessageBoxButtons messageBoxButtons = MessageBoxButtons.OK)
+        {
+            string title = App.StaticData.LocaleStrings["common.message.title.message"];
+            DialogResult dialogResult = DialogResult.None;
+            switch (messageBoxIcon)
+            {
+                case MessageBoxIcon.Error:
+                    title = App.StaticData.LocaleStrings["common.message.title.error"];
+                    break;
+                case MessageBoxIcon.Warning:
+                    title = App.StaticData.LocaleStrings["common.message.title.warning"];
+                    break;
+                case MessageBoxIcon.Information:
+                    title = App.StaticData.LocaleStrings["common.message.title.information"];
+                    break;
+            }
+            dialogResult = MessageBox.Show(App.StaticData.LocaleStrings[contentsLocaleKey], title, messageBoxButtons, messageBoxIcon);
+            return dialogResult;
         }
 
         private void ClientOnError(object sender, WebSocketSharp.ErrorEventArgs e)
@@ -182,7 +230,7 @@ namespace craftersmine.Synx.Client.Gui
 
         private void StatusBarResetter(object sender, EventArgs e)
         {
-            statusBar.Text = statusBar.Text = App.StaticData.LocaleStrings["main.status.ready"];
+            SetStatus("main.status.ready");
         }
 
         private void mainMenuConnectToServer_Click(object sender, EventArgs e) => new ConnectTo().ShowDialog();
