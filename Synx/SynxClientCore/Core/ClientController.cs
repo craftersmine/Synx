@@ -77,8 +77,24 @@ namespace craftersmine.Synx.Client.Core
                     switch (packetType)
                     {
                         case "AUTHORIZATION":
-                            if (packetData == "REQUESTING_AUTHORIZATION")
-                                OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.Authorization, Data = e.Data});
+                            switch (packetData)
+                            {
+                                case "REQUESTING_AUTHORIZATION":
+                                    OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.Authorization, Data = e.Data });
+                                    break;
+                                case "USER_NOT_FOUND":
+                                    OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.AuthorizationFailedUserNotFound, Data = e.Data });
+                                    break;
+                                case "USER_PASSWORD_INCORRECT":
+                                    OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.AuthorizationFailedUserPasswordIncorrect, Data = e.Data });
+                                    break;
+                                case "USER_CREDENTIALS_CORRECT":
+                                    OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.AuthorizationSuccess, Data = e.Data });
+                                    break;
+                                case "USER_BANNED":
+                                    OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.AuthorizationFailedUserBanned, Data = e.Data });
+                                    break;
+                            }
                             break;
                         default:
                             OnMessage?.Invoke(null, new OnMessageEventArgs() { MessageType = MessageType.Unknown, Data = e.Data });
@@ -157,6 +173,11 @@ namespace craftersmine.Synx.Client.Core
 
     public enum MessageType
     {
-        Authorization, Unknown
+        Authorization,
+        Unknown,
+        AuthorizationFailedUserNotFound,
+        AuthorizationFailedUserBanned,
+        AuthorizationFailedUserPasswordIncorrect,
+        AuthorizationSuccess
     }
 }

@@ -58,7 +58,24 @@ namespace craftersmine.Synx.Server.Core
                                     else SendPacket(MessageType.Authorization, "NO_AUTHORIZATION_REQUIRED");
                                     break;
                                 case "AUTHORIZATION_RESPONSE_USERDATA":
-
+                                    string[] parsedUserData = packetAdditionals.Split('!');
+                                    string encPassword = parsedUserData[1];
+                                    string username = parsedUserData[0];
+                                    switch (StaticData.UserStorage.CheckUserCredentials(username, encPassword))
+                                    {
+                                        case UserCredentialsCheckResultType.UserNotFound:
+                                            SendPacket(MessageType.Authorization, "USER_NOT_FOUND");
+                                            break;
+                                        case UserCredentialsCheckResultType.UserCredentialsCorrect:
+                                            SendPacket(MessageType.Authorization, "USER_CREDENTIALS_CORRECT");
+                                            break;
+                                        case UserCredentialsCheckResultType.UserBanned:
+                                            SendPacket(MessageType.Authorization, "USER_BANNED");
+                                            break;
+                                        case UserCredentialsCheckResultType.UserPasswordIncorrect:
+                                            SendPacket(MessageType.Authorization, "USER_PASSWORD_INCORRECT");
+                                            break;
+                                    }
                                     break;
                             }
                             break;
