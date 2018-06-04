@@ -53,6 +53,9 @@ namespace craftersmine.Synx.Client.App
                     string[] kvpair = pair.Split('=');
                     LocaleStrings.Add(kvpair[0], kvpair[1]);
                 }
+#if DEBUG
+                Program.Log(Utils.LogEntryType.Debug, "Adding locale key from \"" + file + "\" " + pair);
+#endif
             }
         }
     }
