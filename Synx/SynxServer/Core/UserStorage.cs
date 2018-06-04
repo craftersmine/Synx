@@ -24,7 +24,7 @@ namespace craftersmine.Synx.Server.Core
                 foreach (var ln in allUsersUnparsed)
                 {
                     string[] splitted = ln.Split('$');
-                    users.Add(splitted[0], new User(splitted[0], splitted[1], long.Parse(splitted[2])));
+                    users.Add(splitted[0], new User(splitted[0], splitted[1], long.Parse(splitted[2]), false));
                 }
             else Program.Log("warn", "No registered users found! Add users by call \"user add [username] [password] <allowedQuota>\"");
         }
@@ -95,6 +95,26 @@ namespace craftersmine.Synx.Server.Core
             }
             return lns.ToArray();
         }
+
+        public UserCredentialsCheckResultType CheckUserCredentials(string username, string encPass)
+        {
+            if (users.ContainsKey(username))
+            {
+                if (!users[username].IsBanned)
+                {
+                    if (users[username].EncryptedPassword == encPass)
+                        return UserCredentialsCheckResultType.UserCredentialsCorrect;
+                    else return UserCredentialsCheckResultType.UserPasswordIncorrect;
+                }
+                else return UserCredentialsCheckResultType.UserBanned;
+            }
+            else return UserCredentialsCheckResultType.UserNotFound;
+        }
+    }
+
+    public enum UserCredentialsCheckResultType
+    {
+        UserNotFound, UserPasswordIncorrect, UserBanned, UserCredentialsCorrect
     }
 
     public struct User
@@ -102,12 +122,14 @@ namespace craftersmine.Synx.Server.Core
         public string Username { get; }
         public string EncryptedPassword { get; }
         public long AllowedStorageQuota { get; }
+        public bool IsBanned { get; }
 
-        public User(string username, string encryptedPass, long allowedStorQuota)
+        public User(string username, string encryptedPass, long allowedStorQuota, bool isBanned)
         {
             Username = username;
             EncryptedPassword = encryptedPass;
             AllowedStorageQuota = allowedStorQuota;
+            IsBanned = isBanned;
         }
     }
 }
