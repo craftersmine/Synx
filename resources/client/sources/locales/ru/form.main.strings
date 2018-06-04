@@ -57,3 +57,7 @@ main.status.syncing=Синхронизация объекта {object} {percenta
 main.status.syncStopped=Синхронизация остановлена
 main.status.syncPaused=Синхронизация приостановлена
 main.status.synced=Синхронизировано!
+main.status.authorization.success=Авторизованы успешно!
+main.status.authorization.banned=Данный пользователь забанен на данном сервере!
+main.status.authorization.passwordIncorrect=Введен не корректный пароль! Проверьте правильность написания и повторите попытку
+main.status.authorization.userNotFound=Данный пользователь не найден в базе пользователей этого сервера! Обратитесь к администратору сервера!
