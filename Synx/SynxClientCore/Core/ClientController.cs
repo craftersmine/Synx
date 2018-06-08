@@ -25,6 +25,8 @@ namespace craftersmine.Synx.Client.Core
         public static event OnOpenEventDelegate OnOpen;
         public static event OnConnectingToServerDelegate OnConnecting;
 
+        public static bool IsClientConnected { get; private set; } = false;
+
         public static void CreateClientInstance(string url, int port = 30203)
         {
             OnCreatingClientInstance?.Invoke(null, null);
@@ -57,6 +59,7 @@ namespace craftersmine.Synx.Client.Core
         {
             StaticData.LoggerInstance.Log(Utils.LogEntryType.Success, "Connected to \"" + StaticData.ClientInstance.Url + "\"!");
             OnOpen?.Invoke(sender, e);
+            IsClientConnected = true;
 
             StaticData.ClientInstance.SendAsync(PacketBuilder(MessageType.Authorization, "REQUESTING_AUTH_REQUIREMENT"), new Action<bool>((b)=> { })); 
         }
@@ -145,12 +148,16 @@ namespace craftersmine.Synx.Client.Core
 
         public static void SendPacket(MessageType messageType, string packetData)
         {
-            StaticData.ClientInstance.SendAsync(PacketBuilder(messageType, packetData), new Action<bool>((b)=> { }));
+            string packet = PacketBuilder(messageType, packetData);
+            StaticData.LoggerInstance.Log(Utils.LogEntryType.Debug, "Message sent: " + packet);
+            StaticData.ClientInstance.SendAsync(packet, new Action<bool>((b)=> { }));
         }
 
         public static void SendPacket(MessageType messageType, string packetData, string additionalData)
         {
-            StaticData.ClientInstance.SendAsync(PacketBuilder(messageType, packetData, additionalData), new Action<bool>((b) => { }));
+            string packet = PacketBuilder(messageType, packetData, additionalData);
+            StaticData.LoggerInstance.Log(Utils.LogEntryType.Debug, "Message sent: " + packet);
+            StaticData.ClientInstance.SendAsync(packet, new Action<bool>((b) => { }));
         }
     }
 

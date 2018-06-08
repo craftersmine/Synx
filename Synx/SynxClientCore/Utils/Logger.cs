@@ -32,11 +32,23 @@ namespace craftersmine.Synx.Client.Utils
                 _date = DateTime.Now.ToShortDateString() + " 0" + DateTime.Now.ToShortTimeString();
             else _date = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
             string logLineCtor = _date + " [" + prefix.ToString().ToUpper() + "]" + " " + contents + "\r\n";
+#if DEBUG
             if (!isOnlyConsole)
                 File.AppendAllText(_file, logLineCtor);
             Console.Write(logLineCtor);
             LogEntry entry = new LogEntry { Contents = contents, EntryDateTime = _date, Type = prefix };
             LogEntries.Add(entry);
+#else
+            if (prefix != LogEntryType.Debug)
+            {
+                if (!isOnlyConsole)
+                    File.AppendAllText(_file, logLineCtor);
+                Console.Write(logLineCtor);
+                LogEntry entry = new LogEntry { Contents = contents, EntryDateTime = _date, Type = prefix };
+                LogEntries.Add(entry);
+            }
+#endif
+
         }
 
         public void LogException(LogEntryType prefix, Exception exception)
