@@ -24,7 +24,7 @@ namespace craftersmine.Synx.Client.Gui
 
         private void LoadIcons()
         {
-            OnDemandPackage package = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\icons\\logs.pak"));
+            OnDemandPackage package = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\icons\\logs.cmpkg"));
 
             // Sequence of lines must be observed!!!
             imageList.Images.Add(Utils.ImageFromBytesConverter.ByteArrayToImage(package.ReadBytes("info.png")));
