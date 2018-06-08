@@ -25,7 +25,7 @@ namespace craftersmine.Synx.Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        [global::System.Configuration.DefaultSettingValueAttribute("en_US")]
         public string Locale {
             get {
                 return ((string)(this["Locale"]));

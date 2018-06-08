@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Locale" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en</Value>
+      <Value Profile="(Default)">en_US</Value>
     </Setting>
     <Setting Name="Username" Type="System.String" Scope="User">
       <Value Profile="(Default)">anonymous</Value>
