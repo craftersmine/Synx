@@ -18,14 +18,42 @@ namespace craftersmine.Synx.Client.App
         public static string ClientLocale { get { return ClientSettings.Locale; } set { ClientSettings.Locale = value; ClientSettings.Save(); } }
 
         public static Dictionary<string, string> LocaleStrings { get; } = new Dictionary<string, string>();
-
+        public static Dictionary<string, string> LocalesIds { get; } = new Dictionary<string, string>();
+        
         public static void LoadLocales()
         {
+            Program.Log(Utils.LogEntryType.Info, "Loading locales metadata...");
+            string[] files = Directory.EnumerateFiles(Path.Combine(Environment.CurrentDirectory, "resources\\locales\\")).ToArray();
+            foreach (var file in files)
+            {
+                Program.Log(Utils.LogEntryType.Debug, "Loading locale metadata of " + file);
+                OnDemandPackage localePakMeta = new OnDemandPackage(file);
+                string[] lines = localePakMeta.ReadLines("metadata.lmd");
+                string id = "";
+                string name = "";
+                foreach (var lineRoot in lines)
+                {
+                    string line = Encoding.UTF8.GetString(Encoding.Default.GetBytes(lineRoot));
+                    string[] ln_split = line.Split('=');
+                    
+                    switch (ln_split[0].ToLower())
+                    {
+                        case "localename":
+                            name = ln_split[1];
+                            break;
+                        case "localeid":
+                            id = ln_split[1];
+                            break;
+                    }
+                }
+                LocalesIds.Add(name, id);
+            }
+
             Program.Log(Utils.LogEntryType.Info, "Loading locale files (" + ClientLocale + ")...");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            OnDemandPackage localePak = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\locales\\" + ClientLocale + ".pak"));
+            OnDemandPackage localePak = new OnDemandPackage(Path.Combine(Environment.CurrentDirectory, "resources\\locales\\" + ClientLocale + ".cmpkg"));
             
             AddLocales(localePak, "form.main.strings");
             AddLocales(localePak, "form.connectTo.strings");
@@ -53,9 +81,7 @@ namespace craftersmine.Synx.Client.App
                     string[] kvpair = pair.Split('=');
                     LocaleStrings.Add(kvpair[0], kvpair[1]);
                 }
-#if DEBUG
                 Program.Log(Utils.LogEntryType.Debug, "Adding locale key from \"" + file + "\" " + pair);
-#endif
             }
         }
     }
