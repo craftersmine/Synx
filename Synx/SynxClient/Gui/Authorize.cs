@@ -15,6 +15,7 @@ namespace craftersmine.Synx.Client.Gui
         public Authorize()
         {
             InitializeComponent();
+            ApplyLocales(App.StaticData.ClientLocale);
         }
 
         public void ApplyLocales(string localeId)
